@@ -1,0 +1,22 @@
+{
+    "name": "TrurlMcByte/serpri",
+    "type": "class",
+    "description": "SERialized smart object pretty PRInt for php",
+    "license": "MIT",
+    "require" : {
+        "php" : ">=5.3.1"
+    },
+    "authors": [
+        {
+            "name": "Trurl McByte",
+            "email": "trurl@mcbyte.net"
+        }
+    ],
+    "scripts": {
+        "docs": [
+            "phpdoc -f serpri.php -t docs/ --template='xml'",
+            "/usr/local/src/phpdoc-md/bin/phpdocmd docs/structure.xml docs",
+            "rm phpdoc-*.log"
+        ]
+    }
+}

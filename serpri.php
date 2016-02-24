@@ -8,12 +8,12 @@
 * $p=new serpri('file_with_serialized.dump'); $p->process(2);
 *
 * @author Trurl McByte.
+*
+* @version 0.7
 */
 
 /**
  * Primary (and only) class.
- *
- * @version 0.7
  */
 class serpri
 {
@@ -23,6 +23,9 @@ class serpri
     private $eol = true;
     private $prot = false;
     private $type = '';
+    /**
+     * for self testing only.
+     */
     protected $next = false;
     private $e = '';
     private $prefix = null;
