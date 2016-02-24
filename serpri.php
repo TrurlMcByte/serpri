@@ -79,6 +79,7 @@ class serpri
             @fclose($this->fp);
         }
         $this->fp = fopen($input, 'r');
+        $this->lid = 0;
         $this->filemode = true;
 
         return $this;
@@ -96,7 +97,9 @@ class serpri
             return $this; // E_NOTICE raised
         }
         $this->string = $str;
+        $this->pt = 0;
         $this->lpt = strlen($this->string);
+        $this->lid = 0;
 
         return $this;
     }
@@ -110,10 +113,14 @@ class serpri
      */
     public function process($html = null)
     {
-        if ($html !== null && $html > 0) {
-            $this->html = true;
-            if ($html > 1) {
-                $this->fullhtml = true;
+        if ($html !== null) {
+            if ($html > 0) {
+                $this->html = true;
+                if ($html > 1) {
+                    $this->fullhtml = true;
+                }
+            } else {
+                $this->html = false;
             }
         }
 
@@ -169,6 +176,14 @@ sub { font-size: xx-small; }
 </style>
 </head><body><div>';
         }
+
+        if ($this->filemode) {
+            fseek($this->fp, 0);
+        } else {
+            $this->pt = 0;
+            $this->lpt = strlen($this->string);
+        }
+        $this->lid = 0;
 
         while (!$this->eof()) {
             $this->selector();

@@ -30,6 +30,10 @@ class serpriTest extends \PHPUnit_Framework_TestCase
         $s = array(3.14, false, 100, null, 'roger' => 500, 'test');
         $p = new serpri($s);
         ob_start();
+        $p->process(1);
+        $ret = ob_get_clean();
+
+        ob_start();
         $p->process(0);
         $ret = ob_get_clean();
         $must = <<<'EOLL'
