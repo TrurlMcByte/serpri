@@ -23,9 +23,10 @@ Calls examples:
 
 `$p=new \serpri('file_with_serialized.dump'); $p->process(2);`
 
-### Hard way
+### "Hard" way
 
-Think for yourself.
+`composer require trurlmcbyte/serpri`
+
 
 ## Documentation
  [Documentation](serpri.md)
