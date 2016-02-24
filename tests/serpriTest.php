@@ -1,7 +1,5 @@
 <?php
 
-include_once 'serpri.php';
-
 /**
  * @coversDefaultClass serpri
  */

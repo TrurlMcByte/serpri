@@ -17,6 +17,9 @@
         "phpdocumentor/phpdocumentor": "2.*",
         "evert/phpdoc-md" : "~0.1.1"
     },
+    "autoload": {
+        "files": ["serpri.php"]
+    },
     "scripts": {
         "test": [
             "phpunit"
