@@ -34,7 +34,7 @@ class serpriTest extends \PHPUnit_Framework_TestCase
      */
     public function test_textout()
     {
-        $s = array(3.14, false, 100, null, 'roger' => 500, 'test');
+        $s = array(5.5, false, 100, null, 'roger' => 500, 'test');
         $p = new serpri($s);
         ob_start();
         $p->process(1);
@@ -45,7 +45,7 @@ class serpriTest extends \PHPUnit_Framework_TestCase
         $ret = ob_get_clean();
         $must = <<<'EOLL'
 (&1)(a:6)array{
-  [0] => (&2)(d)3.1400000000000001
+  [0] => (&2)(d)5.5
   [1] => (&3)(b)false
   [2] => (&4)(i)100
   [3] => (&5)NULL

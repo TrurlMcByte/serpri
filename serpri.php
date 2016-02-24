@@ -347,7 +347,10 @@ sub { font-size: xx-small; }
                 $s = strtr($s, "\x00", '@');
             }
         } else {
-            $jopt = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
+            $jopt = 0;
+            if (defined('JSON_UNESCAPED_UNICODE')) {
+                $jopt = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
+            }
             if ($this->html) {
                 $jopt |= JSON_HEX_TAG;
             }
