@@ -1,5 +1,5 @@
 {
-    "name": "TrurlMcByte/serpri",
+    "name": "serpri/serpri",
     "type": "class",
     "description": "SERialized smart object pretty PRInt for php",
     "license": "MIT",
