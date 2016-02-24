@@ -11,7 +11,7 @@ class serpriTest extends \PHPUnit_Framework_TestCase
     public function test_serpri()
     {
         $p = new serpri(array(1, 3, 4));
-        $this->assertInstanceOf(serpri::class, $p);
+        $this->assertInstanceOf('serpri', $p);
 
         return $p;
     }
