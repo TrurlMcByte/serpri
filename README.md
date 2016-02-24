@@ -1,5 +1,7 @@
 # serpri
 
+[![Build Status](https://img.shields.io/travis/TrurlMcByte/serpri/master.svg?style=flat-square)](https://travis-ci.org/TrurlMcByte/serpri)
+
  SERialized smart object pretty PRInt for php.
 
  Usefull to compact print crosslinked and recursive objects.
