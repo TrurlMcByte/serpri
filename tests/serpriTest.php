@@ -21,7 +21,16 @@ class serpriTest extends \PHPUnit_Framework_TestCase
      * @covers ::process
      * @covers ::ga
      * @covers ::gc
+     * @covers ::pad
+     * @covers ::pp
      * @covers ::out_i
+     * @covers ::out_s
+     * @covers ::out_d
+     * @covers ::out__n
+     * @covers ::out_a
+     * @covers ::out_b
+     * @covers ::block_s
+     * @covers ::block_e
      * @covers ::eof
      * @covers ::lid
      */
