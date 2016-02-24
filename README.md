@@ -14,11 +14,11 @@ Download this class
 
 And just `include_once 'serpri.php';`
 
-Calls example:
+Calls examples:
 
-`(new serpri($SomeSmartObject))->process(2);`
+`(new \serpri($SomeSmartObject))->process(2);`
 
-`$p=new serpri('file_with_serialized.dump'); $p->process(2);`
+`$p=new \serpri('file_with_serialized.dump'); $p->process(2);`
 
 ### Hard way
 
