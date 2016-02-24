@@ -42,9 +42,9 @@ serpri object constructor.
 
 
 #### Arguments
-* $input **mixed** - &lt;p&gt;filename (if file exists), serialized string, array or object&lt;/p&gt;
+* $input **mixed** - *filename (if file exists), serialized string, array or object*
 
-* $html **int** - &lt;p&gt;1-format as html, 2-include page header/footer with css&lt;/p&gt;
+* $html **int** - *1-format as html, 2-include page header/footer with css*
 
 
 
@@ -61,7 +61,7 @@ Set serialized data file to process.
 
 
 #### Arguments
-* $input **string** - &lt;p&gt;filename with serialized data&lt;/p&gt;
+* $input **string** - *filename with serialized data*
 
 
 
@@ -93,6 +93,6 @@ use ob_start|ob_end_clean to put in var
 
 
 #### Arguments
-* $html **int** - &lt;p&gt;1-format as html, 2-include page header/footer with css&lt;/p&gt;
+* $html **int** - *1-format as html, 2-include page header/footer with css*
 
 
