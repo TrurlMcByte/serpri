@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <parser>
+    <target>docs/output</target>
+  </parser>
+  <transformer>
+    <target>docs/</target>
+  </transformer>
+  <transformations>
+    <template name="xml" />
+  </transformations>
+  <files>
+    <file>serpri.php</file>
+  </files>
+  <logging>
+    <level>warn</level>
+    <paths>
+       <default>docs/log/{DATE}.log</default>
+       <errors>docs/phpdocs.log</errors>
+    </paths>
+  </logging>
+</phpdoc>

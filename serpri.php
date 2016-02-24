@@ -44,7 +44,7 @@ class serpri
      *
      * @return serpri $this self object
      */
-    public function __construct($input = 'ser.data', $html = 0)
+    public function __construct($input = null, $html = 0)
     {
         if ($html > 0) {
             $this->html = true;
@@ -104,7 +104,7 @@ class serpri
     /**
      * Output formatted object.
      *
-     * use ob_start|ob_end_clean to put in var
+     * use ob_start|ob_get_clean to put in var
      *
      * @param int $html 1-format as html, 2-include page header/footer with css
      */

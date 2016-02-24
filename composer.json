@@ -3,20 +3,28 @@
     "type": "class",
     "description": "SERialized smart object pretty PRInt for php",
     "license": "MIT",
-    "require" : {
-        "php" : ">=5.3.1"
-    },
     "authors": [
         {
             "name": "Trurl McByte",
             "email": "trurl@mcbyte.net"
         }
     ],
+    "require" : {
+        "php" : ">=5.3.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.0.*",
+        "phpdocumentor/phpdocumentor": "2.*",
+        "evert/phpdoc-md" : "~0.1.1"
+    },
     "scripts": {
+        "test": [
+            "phpunit"
+        ],
         "docs": [
-            "phpdoc -f serpri.php -t docs/ --template='xml'",
-            "/usr/local/src/phpdoc-md/bin/phpdocmd docs/structure.xml docs",
-            "rm phpdoc-*.log"
+            "phpdoc",
+            "phpdocmd docs/structure.xml docs",
+            "gawk -v t=0 '/^Methods$/ {t=1} !/^$/ {sk=0} sk {next} /^$/ {sk++} /^### selector/ {t=0} t { gsub(\"&lt;\/?p&gt;\",\"*\"); print $0}' docs/serpri.md > serpri.md"
         ]
     }
 }
