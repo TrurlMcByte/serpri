@@ -32,6 +32,7 @@ class serpri
     public $html = false;
     public $fullhtml = true;
     private $filemode = false;
+    public $html_title = '';
     public $string = '';
     private $pt = 0;
     private $lpt = 0;
@@ -55,11 +56,9 @@ class serpri
         if (empty($input)) {
             return $this;
         }
-
         if (!is_string($input)) {
             return $this->instring(serialize($input));
         }
-
         if (strlen($input) < 1025 && is_file($input) && is_readable($input)) {
             return $this->infile($input);
         }
@@ -125,8 +124,11 @@ class serpri
         }
 
         if ($this->html && $this->fullhtml) {
-            echo '<html><head>
-<meta charset="utf-8" />
+            echo '<!DOCTYPE HTML><html><head>';
+            if ($this->html_title) {
+                echo "<title>{$this->html_title}</title>";
+            }
+            echo'<meta charset="utf-8" />
 <style type="text/css">
 body { border: 5px; }
 div { border: 0; max-width: 99%; }
@@ -174,7 +176,11 @@ input[type=checkbox]:checked + div:hover {
 span.c__n + a { color: #909; font-style: oblique; }
 sub { font-size: xx-small; }
 </style>
-</head><body><div>';
+</head><body>';
+            if ($this->html_title) {
+                echo "<h2>{$this->html_title}</h2>";
+            }
+            echo '<div class="sl_">';
         }
 
         if ($this->filemode) {
@@ -193,7 +199,7 @@ sub { font-size: xx-small; }
         }
 
         if ($this->html && $this->fullhtml) {
-            echo '</body></html>';
+            echo '</div></body></html>';
         }
     }
 
