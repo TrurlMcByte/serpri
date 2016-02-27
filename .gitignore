@@ -2,4 +2,5 @@
 composer.lock
 vendor
 docs
+phpunit-logfile.json
 

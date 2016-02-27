@@ -51,6 +51,8 @@ class serpri
             $this->html = true;
             if ($html > 1) {
                 $this->fullhtml = true;
+            } else {
+                $this->fullhtml = false;
             }
         }
         if (empty($input)) {
@@ -92,9 +94,7 @@ class serpri
      */
     public function instring($str)
     {
-        if (unserialize($str) === false) {
-            return $this; // E_NOTICE raised
-        }
+        assert(unserialize($str) !== false);
         $this->string = $str;
         $this->pt = 0;
         $this->lpt = strlen($this->string);
@@ -117,6 +117,8 @@ class serpri
                 $this->html = true;
                 if ($html > 1) {
                     $this->fullhtml = true;
+                } else {
+                    $this->fullhtml = false;
                 }
             } else {
                 $this->html = false;

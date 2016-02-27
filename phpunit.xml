@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit verbose="false">
+<phpunit 
+    verbose="true"
+    strict="true"
+    checkForUnintentionallyCoveredCode="true"
+>
   <testsuites>
       <testsuite name="Application">
           <directory>./tests</directory>
       </testsuite>
   </testsuites>
   <logging>
-       <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-       <log type="json" target="/tmp/phpunit-logfile.json"/>
+       <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+       <log type="coverage-html" target="docs" showUncoveredFiles="true"/>
+       <log type="json" target="./phpunit-logfile.json"/>
   </logging>
   <filter>
-        <whitelist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./</directory>
             <exclude>
                 <directory suffix=".php">vendor</directory>
+                <directory>./tests</directory>
+                <file>./example.php</file>
             </exclude>
-
         </whitelist>
-        <blacklist>
-            <file>./example.php</file>
-            <file>./test/boostrap.php</file>
-        </blacklist>
   </filter>
 </phpunit>
