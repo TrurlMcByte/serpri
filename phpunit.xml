@@ -2,7 +2,6 @@
 <phpunit 
     verbose="true"
     strict="true"
-    checkForUnintentionallyCoveredCode="true"
 >
   <testsuites>
       <testsuite name="Application">

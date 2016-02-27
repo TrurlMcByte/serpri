@@ -8,16 +8,6 @@ spl_autoload_register('spl_autoload');
 class serpriTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::__construct
-     */
-    public function test_serpri()
-    {
-        $p = new serpri(array(1, 3, 4));
-        $this->assertInstanceOf('serpri', $p);
-
-        return $p;
-    }
-    /**
      * @test
      */
     public function test_htmlandtextout()
@@ -25,6 +15,7 @@ class serpriTest extends \PHPUnit_Framework_TestCase
         $o = (object) array('var' => 'val');
         $s = array(5.5, false, 100, null, 'roger' => 500, 'test', $o);
         $p = new serpri($s,1);
+        $this->assertInstanceOf('serpri', $p);
         ob_start();
         $p->process(1);
         $ret = ob_get_clean();
