@@ -211,20 +211,15 @@ sub { font-size: xx-small; }
         if ($this->eof()) {
             return;
         }
-        if ($c[1] = ':') {
+        assert($c[1] == ':' || $c == 'N;');
             $this->type = $c[0];
             if (strtolower($this->type) !== $this->type) {
                 $this->type = '_'.strtolower($this->type);
             }
             $m = 'out_'.$this->type;
-            if (method_exists($this, $m)) {
-                $this->$m();
-            } else {
-                die("no method $m  ");
-            }
-        } else {
-            die("crazy c=$c  ");
-        }
+            assert(method_exists($this, $m));
+            $this->$m();
+        
     }
 
     private function lid($str, $size = 0, $type = null)
