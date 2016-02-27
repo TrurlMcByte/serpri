@@ -212,14 +212,13 @@ sub { font-size: xx-small; }
             return;
         }
         assert($c[1] == ':' || $c == 'N;');
-            $this->type = $c[0];
-            if (strtolower($this->type) !== $this->type) {
-                $this->type = '_'.strtolower($this->type);
-            }
-            $m = 'out_'.$this->type;
-            assert(method_exists($this, $m));
-            $this->$m();
-        
+        $this->type = $c[0];
+        if (strtolower($this->type) !== $this->type) {
+            $this->type = '_'.strtolower($this->type);
+        }
+        $m = 'out_'.$this->type;
+        assert(method_exists($this, $m));
+        $this->$m();
     }
 
     private function lid($str, $size = 0, $type = null)
@@ -451,9 +450,7 @@ sub { font-size: xx-small; }
     }
     private function pp($str)
     {
-        if ($this->lv < 0) {
-            die("bad level {$this->lv}  ");
-        }
+        assert($this->lv >= 0);
         if ($this->prefix) {
             echo $this->pad();
         }

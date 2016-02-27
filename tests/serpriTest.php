@@ -24,7 +24,7 @@ class serpriTest extends \PHPUnit_Framework_TestCase
     {
         $o = (object) array('var' => 'val');
         $s = array(5.5, false, 100, null, 'roger' => 500, 'test', $o);
-        $p = new serpri($s);
+        $p = new serpri($s,1);
         ob_start();
         $p->process(1);
         $ret = ob_get_clean();
