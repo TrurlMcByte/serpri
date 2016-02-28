@@ -2,6 +2,8 @@
 
 [![Build Status](https://img.shields.io/travis/TrurlMcByte/serpri/master.svg?style=flat-square)](https://travis-ci.org/TrurlMcByte/serpri)
 
+[![Latest Stable Version](https://poser.pugx.org/trurlmcbyte/serpri/v/stable)](https://packagist.org/packages/trurlmcbyte/serpri) [![Total Downloads](https://poser.pugx.org/trurlmcbyte/serpri/downloads)](https://packagist.org/packages/trurlmcbyte/serpri) [![Latest Unstable Version](https://poser.pugx.org/trurlmcbyte/serpri/v/unstable)](https://packagist.org/packages/trurlmcbyte/serpri) [![License](https://poser.pugx.org/trurlmcbyte/serpri/license)](https://packagist.org/packages/trurlmcbyte/serpri)
+
  SERialized smart object pretty PRInt for php.
 
  Usefull to compact print crosslinked and recursive objects.
