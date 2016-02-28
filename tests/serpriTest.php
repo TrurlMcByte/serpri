@@ -2,7 +2,6 @@
 
 spl_autoload_register('spl_autoload');
 
-
 if (!defined('PHP_VERSION_ID')) {
     $version = explode('.', PHP_VERSION);
 
@@ -119,21 +118,19 @@ EOLL;
      */
     public function test_nonserializable()
     {
-
         $a = (object) ['test' => 123];
 
         if (PHP_VERSION_ID > 55000) {
-        function printer()
-        {
-            while (true) {
-                $string = yield;
-                echo $string;
+            function printer()
+            {
+                while (true) {
+                    $string = yield;
+                    echo $string;
+                }
             }
+            $p = printer();
+            $a->bc = $p;
         }
-        $p = printer();
-        $a->bc = $p;
-        }
-
 
         $a->pp = function ($ff) { return 5 + $ff; };
 
@@ -143,10 +140,10 @@ EOLL;
         $ret = ob_get_clean();
 
         if (PHP_VERSION_ID > 55000) {
-        $this->assertContains('[bc] => (&3)(G)Generator::__set_state(array(', $ret);
+            $this->assertContains('(G)Generator::__set_state(array(', $ret);
         }
 
-        $this->assertContains('[pp] => (&4)(C)Closure::__set_state(array(', $ret);
+        $this->assertContains('(C)Closure::__set_state(array(', $ret);
     }
     /**
      * @expectedException PHPUnit_Framework_Error
