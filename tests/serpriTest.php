@@ -14,7 +14,7 @@ class serpriTest extends \PHPUnit_Framework_TestCase
     {
         $o = (object) array('var' => 'val');
         $s = array(5.5, false, 100, null, 'roger' => 500, 'test', $o);
-        $p = new serpri($s,1);
+        $p = new serpri($s, 1);
         $this->assertInstanceOf('serpri', $p);
         ob_start();
         $p->process(1);
@@ -94,7 +94,7 @@ EOLL;
     /**
      * @test
      */
-    public function test_string()
+    public function test_protected()
     {
         $class_str = json_decode('"O:5:\"Test1\":3:{s:3:\"foo\";s:1:\"A\";s:10:\"\u0000Test1\u0000bar\";s:1:\"B\";s:6:\"\u0000*\u0000baz\";s:1:\"C\";}"');
 
@@ -106,6 +106,34 @@ EOLL;
 
         $this->assertContains('  [@Test1@bar] => (&3)(s:1)@ "B"', $ret);
         $this->assertContains('  [@*@baz] => (&4)(s:1)@ "C"', $ret);
+    }
+    /**
+     * @test
+     */
+    public function test_nonserializable()
+    {
+        function printer()
+        {
+            while (true) {
+                $string = yield;
+                echo $string;
+            }
+        }
+
+        $p = printer();
+        $a = (object) ['test' => 123];
+        $a->bc = $p;
+
+        $a->pp = function ($ff) { return 5 + $ff; };
+
+        $p = new serpri($a);
+        ob_start();
+        $p->process();
+        $ret = ob_get_clean();
+
+        $this->assertContains('[bc] => (&3)(G)Generator::__set_state(array(', $ret);
+
+        $this->assertContains('[pp] => (&4)(C)Closure::__set_state(array(', $ret);
     }
     /**
      * @expectedException PHPUnit_Framework_Error

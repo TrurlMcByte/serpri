@@ -59,13 +59,38 @@ class serpri
             return $this;
         }
         if (!is_string($input)) {
-            return $this->instring(serialize($input));
+            return $this->inobject($input);
         }
         if (strlen($input) < 1025 && is_file($input) && is_readable($input)) {
             return $this->infile($input);
         }
 
         return $this->instring($input);
+    }
+    /**
+     * Set direct object to process.
+     *
+     * @param mixed $input object or array
+     *
+     * @return serpri $this self object
+     */
+    public function inobject($input)
+    {
+        if (is_object($input) || is_array($input)) {
+            array_walk_recursive($input, function (&$el) use (&$return) {
+                    if (is_object($el) && (get_class($el) == 'Closure' || get_class($el) == 'Generator')) {
+                        $el = "\x02".var_export($el, true)."\x03";
+                    }
+                });
+        }
+        $str = @serialize($input);
+        assert($str !== false);
+        $this->string = $str;
+        $this->pt = 0;
+        $this->lpt = strlen($this->string);
+        $this->lid = 0;
+
+        return $this;
     }
     /**
      * Set serialized data file to process.
@@ -337,6 +362,7 @@ sub { font-size: xx-small; }
 
     private function out_s()
     {
+        $type = 's';
         $l = 0 + $this->col(':');
         $s = $this->ga($l + 2);
         assert(strlen($s) == ($l + 2));
@@ -349,6 +375,11 @@ sub { font-size: xx-small; }
                 $s = strtr($s, "\x00", '@');
             }
         } else {
+            if ($s[0] === "\x02" && $s[$l - 1] === "\x03") {
+                $s = substr($s, 1, $l - 2);
+                $type = $s[0];
+                $l = 0;
+            }
             $jopt = 0;
             if (defined('JSON_UNESCAPED_UNICODE')) {
                 $jopt = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
@@ -357,8 +388,11 @@ sub { font-size: xx-small; }
                 $jopt |= JSON_HEX_TAG;
             }
             $s = json_encode($s, $jopt);
+            if ($type != 's') {
+                $s = trim($s, '"');
+            }
         }
-        $this->pp($this->lid($s, $l));
+        $this->pp($this->lid($s, $l, $type));
     }
     private function out_i()
     {
