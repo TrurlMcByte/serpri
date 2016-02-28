@@ -108,7 +108,7 @@ EOLL;
         $this->assertContains('  [@*@baz] => (&4)(s:1)@ "C"', $ret);
     }
     /**
-     * @test
+     * @requires yield
      */
     public function test_nonserializable()
     {
