@@ -118,7 +118,7 @@ EOLL;
      */
     public function test_nonserializable()
     {
-        $a = (object) ['test' => 123];
+        $a = (object) array('test' => 123);
 
         if (PHP_VERSION_ID > 55000) {
             function printer()
