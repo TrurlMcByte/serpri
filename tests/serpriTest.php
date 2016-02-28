@@ -2,6 +2,13 @@
 
 spl_autoload_register('spl_autoload');
 
+
+if (!defined('PHP_VERSION_ID')) {
+    $version = explode('.', PHP_VERSION);
+
+    define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+}
+
 /**
  * @coversDefaultClass serpri
  */
@@ -108,10 +115,14 @@ EOLL;
         $this->assertContains('  [@*@baz] => (&4)(s:1)@ "C"', $ret);
     }
     /**
-     * @requires PHP 5.4
+     * @test
      */
     public function test_nonserializable()
     {
+
+        $a = (object) ['test' => 123];
+
+        if (PHP_VERSION_ID > 55000) {
         function printer()
         {
             while (true) {
@@ -119,10 +130,10 @@ EOLL;
                 echo $string;
             }
         }
-
         $p = printer();
-        $a = (object) ['test' => 123];
         $a->bc = $p;
+        }
+
 
         $a->pp = function ($ff) { return 5 + $ff; };
 
@@ -131,7 +142,9 @@ EOLL;
         $p->process();
         $ret = ob_get_clean();
 
+        if (PHP_VERSION_ID > 55000) {
         $this->assertContains('[bc] => (&3)(G)Generator::__set_state(array(', $ret);
+        }
 
         $this->assertContains('[pp] => (&4)(C)Closure::__set_state(array(', $ret);
     }
