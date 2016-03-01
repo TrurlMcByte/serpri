@@ -375,7 +375,7 @@ sub { font-size: xx-small; }
                 $s = strtr($s, "\x00", '@');
             }
         } else {
-            if ($s[0] === "\x02" && $s[$l - 1] === "\x03") {
+            if ($l>3 && $s[0] === "\x02" && $s[$l - 1] === "\x03") {
                 $s = substr($s, 1, $l - 2);
                 $type = $s[0];
                 $l = 0;
