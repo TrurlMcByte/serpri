@@ -9,7 +9,7 @@
  Usefull to compact print crosslinked and recursive objects.
  In HTML mode also creating links between recusive and referal objects.
  May show raw serialized data without original clases.
- Low memory consumption in file mode with large files (mostly used sream get|print).
+ Low memory consumption in file mode with large files (mostly used stream get|print).
  Fast (and bit furious).
  No any composers or waving a dead chicken required
 

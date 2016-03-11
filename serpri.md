@@ -11,7 +11,18 @@ serpri object constructor.
 
 #### Arguments
 * $input **mixed** - *filename (if file exists), serialized string, array or object*
-* $html **integer** - *1-format as html, 2-include page header/footer with css*
+* $html **integer** - *1-format as html, 2-include page header/footer with CSS*
+
+### inobject
+
+    \serpri serpri::inobject(mixed $input)
+
+Set direct object to process.
+
+* Visibility: **public**
+
+#### Arguments
+* $input **mixed** - *object or array*
 
 ### infile
 
@@ -46,5 +57,5 @@ use ob_start|ob_get_clean to put in var
 * Visibility: **public**
 
 #### Arguments
-* $html **integer** - *1-format as html, 2-include page header/footer with css*
+* $html **integer** - *1-format as html, 2-include page header/footer with CSS*
 
