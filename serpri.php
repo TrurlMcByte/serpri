@@ -77,7 +77,7 @@ class serpri
     public function inobject($input)
     {
         if (is_object($input) || is_array($input)) {
-            array_walk_recursive($input, function (&$el) use (&$return) {
+            @array_walk_recursive($input, function (&$el) use (&$return) {
                     if (is_object($el) && (get_class($el) == 'Closure' || get_class($el) == 'Generator')) {
                         $el = "\x02".var_export($el, true)."\x03";
                     }
