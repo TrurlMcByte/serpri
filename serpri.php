@@ -41,7 +41,7 @@ class serpri
      * serpri object constructor.
      *
      * @param mixed $input filename (if file exists), serialized string, array or object
-     * @param int   $html  1-format as html, 2-include page header/footer with css
+     * @param int   $html  1-format as html, 2-include page header/footer with CSS
      *
      * @return serpri $this self object
      */
@@ -133,7 +133,7 @@ class serpri
      *
      * use ob_start|ob_get_clean to put in var
      *
-     * @param int $html 1-format as html, 2-include page header/footer with css
+     * @param int $html 1-format as html, 2-include page header/footer with CSS
      */
     public function process($html = null)
     {
